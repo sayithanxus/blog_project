@@ -37,7 +37,15 @@ func (contact Contact) GetAll(where ...interface{}) []Contact {
 	db.Find(&contacts, where...)
 	return contacts
 }
-
+func (contact Contact) Get(where ...interface{}) Contact {
+	db, err := gorm.Open(mysql.Open(Dns), &gorm.Config{})
+	if err != nil {
+		fmt.Println(err)
+		return contact
+	}
+	db.First(&contact, where...)
+	return contact
+}
 func (contact Contact) Delete() {
 	db, err := gorm.Open(mysql.Open(Dns), &gorm.Config{})
 	if err != nil {

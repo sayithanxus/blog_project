@@ -1,0 +1,44 @@
+:root {
+    --primary: #227093;
+    --background: #eee;
+    --highlight: #ffda79;
+    /* Theme color */
+    --theme: var(--primary);
+}
+
+
+/* Core styles/functionality */
+
+
+.tab input:checked ~ .tab__content {
+    max-height: 10rem;
+}
+
+/* Visual styles */
+.accordion {
+    color: var(--theme);
+    border: 2px solid;
+    border-radius: 0.5rem;
+
+}
+.tab__label,
+.tab__close {
+    display: flex;
+    color: white;
+    background: var(--theme);
+    cursor: pointer;
+}
+.tab__label {
+    justify-content: space-between;
+    padding: 1rem;
+}
+.tab__close {
+    justify-content: flex-end;
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+}
+.accordion--radio {
+    --theme: var(--secondary);
+}
+
+

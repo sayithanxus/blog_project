@@ -35,13 +35,16 @@ func Routes() *httprouter.Router {
 	r.GET("/admin/aboutus/delete/:id", admin.AboutUs{}.Delete)
 	r.GET("/admin/aboutus/edit/:id", admin.AboutUs{}.Edit)
 	r.POST("/admin/aboutus/update/:id", admin.AboutUs{}.Update)
+	//Contacts
+	r.GET("/admin/contact", admin.Contact{}.Index)
+	r.GET("/admin/contact/delete/:id", admin.Contact{}.Delete)
 	//SITE
 	//Homepage
 	r.GET("/", site.Homepage{}.Index)
 	r.GET("/yazilar/:slug", site.Homepage{}.Detail)
 	r.GET("/hakkimizda", site.Homepage{}.About)
-	/*r.GET("/iletisim", site.Homepage{}.Contact)
-	r.GET("/site/contact/new", site.Homepage{}.AddContact)*/
+	r.GET("/iletisim", site.Homepage{}.Contact)
+	r.POST("/site/contact/new", site.Homepage{}.AddContact)
 
 	// SERVE FILES
 	r.ServeFiles("/admin/assets/*filepath", http.Dir("admin/assets"))

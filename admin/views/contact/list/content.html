@@ -1,0 +1,23 @@
+{{ define "content" }}
+<h1>
+  İletişim Kutusu
+</h1>
+<hr>
+{{ range $index,$value := .Contact }}
+<section class="accordion m-2">
+  <div class="tab">
+    <div class="tab__label">
+      <label  class="">{{ $value.NameSurname }} -- {{ $value.Email }} </label>
+      <div>
+        <a href="mailto:{{ $value.Email }}?subject=QuillWander%20'a gönderdiğiniz mesaj hakkında" class="btn btn-success "><i class="fa fa-envelope"></i></a>
+        <a href="/admin/contact/delete/{{ $value.ID }}" class="btn btn-danger "><i class="fa fa-trash"></i></a>
+      </div>
+    </div>
+
+    <div class="tab__content p-2">
+      <p>{{ $value.Message }}</p>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}

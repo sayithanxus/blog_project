@@ -27,6 +27,7 @@ func (homepage Homepage) Index(w http.ResponseWriter, r *http.Request, params ht
 	}
 	data := make(map[string]interface{})
 	data["Posts"] = models.Post{}.GetAll()
+	data["Alert"] = helpers.GetAlert(w, r)
 	view.ExecuteTemplate(w, "index", data)
 }
 
@@ -59,7 +60,7 @@ func (homepage Homepage) Contact(w http.ResponseWriter, r *http.Request, params 
 	view.ExecuteTemplate(w, "index", nil)
 }
 
-/*func (homepage Homepage) AddContact(w http.ResponseWriter, r *http.Request, params httprouter.Params) {
+func (homepage Homepage) AddContact(w http.ResponseWriter, r *http.Request, params httprouter.Params) {
 	namesurname := r.FormValue("name-surname")
 	email := r.FormValue("email")
 	message := r.FormValue("message")
@@ -69,6 +70,6 @@ func (homepage Homepage) Contact(w http.ResponseWriter, r *http.Request, params 
 		Email:       email,
 		Message:     message,
 	}.Add()
+	helpers.SetAlert(w, r, "Başarıyla Gönderildi")
 	http.Redirect(w, r, "/", http.StatusSeeOther)
 }
-*/
