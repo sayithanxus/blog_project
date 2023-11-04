@@ -28,10 +28,20 @@ func Routes() *httprouter.Router {
 	r.POST("/admin/do_login", admin.Userops{}.Login)
 	r.GET("/admin/logout", admin.Userops{}.Logout)
 
+	//AboutUs
+	r.GET("/admin/aboutus", admin.AboutUs{}.Index)
+	r.GET("/admin/aboutus/add", admin.AboutUs{}.NewItem)
+	r.POST("/admin/aboutus/new", admin.AboutUs{}.Add)
+	r.GET("/admin/aboutus/delete/:id", admin.AboutUs{}.Delete)
+	r.GET("/admin/aboutus/edit/:id", admin.AboutUs{}.Edit)
+	r.POST("/admin/aboutus/update/:id", admin.AboutUs{}.Update)
 	//SITE
 	//Homepage
 	r.GET("/", site.Homepage{}.Index)
 	r.GET("/yazilar/:slug", site.Homepage{}.Detail)
+	r.GET("/hakkimizda", site.Homepage{}.About)
+	/*r.GET("/iletisim", site.Homepage{}.Contact)
+	r.GET("/site/contact/new", site.Homepage{}.AddContact)*/
 
 	// SERVE FILES
 	r.ServeFiles("/admin/assets/*filepath", http.Dir("admin/assets"))

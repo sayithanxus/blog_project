@@ -1,0 +1,38 @@
+{{ define "content" }}
+<!-- Page Header-->
+<header class="masthead" >
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto ">
+        <div class="site-heading">
+          <h1>Hakkımızda</h1>
+          <span class="subheading"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<!-- Main Content-->
+{{ range $index,$value := .About }}
+<div class="container">
+
+  <div class="w3-row">
+    <!-- Blog entries -->
+    <div class="w3-col l8 s12 w-100">
+      <!-- Blog entry -->
+      <div class="w3-card-4 w3-margin w3-white">
+        <img src="/{{ $value.Picture_url }}" alt="Nature" style="width:100%">
+        <div class="w3-container pt-2">
+          <h3><b>{{ $value.Title }}</b></h3>
+        </div>
+
+        <div class="w3-container">
+          <p class="subheading">{{ $value.Description }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{ end }}
+
+{{ end }}

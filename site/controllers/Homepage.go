@@ -40,3 +40,35 @@ func (homepage Homepage) Detail(w http.ResponseWriter, r *http.Request, params h
 	data["Post"] = models.Post{}.Get("slug = ?", params.ByName("slug"))
 	view.ExecuteTemplate(w, "index", data)
 }
+func (homepage Homepage) About(w http.ResponseWriter, r *http.Request, params httprouter.Params) {
+	view, err := template.ParseFiles(helpers.Include("homepage/about")...)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	data := make(map[string]interface{})
+	data["About"] = models.About{}.GetAll()
+	view.ExecuteTemplate(w, "index", data)
+}
+func (homepage Homepage) Contact(w http.ResponseWriter, r *http.Request, params httprouter.Params) {
+	view, err := template.ParseFiles(helpers.Include("homepage/Contact")...)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	view.ExecuteTemplate(w, "index", nil)
+}
+
+/*func (homepage Homepage) AddContact(w http.ResponseWriter, r *http.Request, params httprouter.Params) {
+	namesurname := r.FormValue("name-surname")
+	email := r.FormValue("email")
+	message := r.FormValue("message")
+
+	models.Contact{
+		NameSurname: namesurname,
+		Email:       email,
+		Message:     message,
+	}.Add()
+	http.Redirect(w, r, "/", http.StatusSeeOther)
+}
+*/
